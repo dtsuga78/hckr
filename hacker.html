@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Restricted System</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Courier New", monospace;
+  background: black;
+  color: #00ff00;
+  text-align: center;
+  overflow-x: hidden;
+}
+
+/* LOCK SCREEN */
+#lock {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#lock input {
+  background: black;
+  color: #00ff00;
+  border: 1px solid #00ff00;
+  padding: 10px;
+  width: 240px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+#lock button {
+  margin-top: 15px;
+  padding: 10px 25px;
+  background: #00ff00;
+  color: black;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+#msg {
+  margin-top: 15px;
+  min-height: 20px;
+  color: red;
+}
+
+/* MAIN */
+#main { display: none; }
+
+header {
+  font-size: 2.2em;
+  padding: 25px;
+  border-bottom: 2px solid #00ff00;
+  text-shadow: 0 0 12px #00ff00;
+}
+
+/* CONTAINER */
+.container {
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 20px;
+  border: 1px solid #00ff00;
+  border-radius: 10px;
+  box-shadow: 0 0 25px rgba(0,255,0,0.4);
+}
+
+/* TERMINAL */
+.terminal {
+  background: black;
+  border: 1px solid #00ff00;
+  padding: 15px;
+  text-align: left;
+  margin: 20px 0;
+  min-height: 120px;
+}
+
+/* GALLERY */
+.gallery img {
+  width: 100%;
+  max-width: 260px;
+  margin: 10px;
+  border: 1px solid #00ff00;
+  filter: grayscale(60%);
+  transition: 0.4s;
+}
+.gallery img:hover {
+  filter: none;
+  transform: scale(1.05);
+}
+
+/* CAKE */
+.cake {
+  width: 200px;
+  height: 200px;
+  margin: 30px auto;
+  border-radius: 50%;
+  border: 2px solid #00ff00;
+  background: url("https://via.placeholder.com/200/00ff00/000?text=CLICK+CAKE") center/cover;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.cake:hover {
+  box-shadow: 0 0 25px #00ff00;
+  transform: rotate(5deg);
+}
+
+/* CODE RAIN */
+.code-rain {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+}
+.code-piece {
+  position: absolute;
+  color: #00ff00;
+  opacity: 0.8;
+  animation: fall linear infinite;
+}
+@keyframes fall {
+  to { transform: translateY(110vh); }
+}
+
+.site-footer {
+  text-align: center;
+  padding: 30px 10px;
+  font-size: 30px;
+  opacity: 0.6;
+}
+</style>
+</head>
+
+<body>
+
+<div class="code-rain"></div>
+
+<!-- LOCK -->
+<div id="lock">
+  <h2>RESTRICTED SYSTEM</h2>
+  <p>Unauthorized access prohibited.</p>
+  <input type="password" id="pass" placeholder="Enter Access Key">
+  <button onclick="unlock()">UNLOCK</button>
+  <p id="msg"></p>
+</div>
+
+<!-- MAIN -->
+<div id="main">
+<header>[ ACCESS GRANTED ] Happy Birthday Sis</header>
+
+<div class="container">
+
+<h2>Birthday Protocol Initiated</h2>
+
+<!-- TERMINAL INTRO -->
+<div class="terminal" id="terminal"></div>
+
+<!-- GALLERY -->
+<div class="gallery">
+  <img src="/assets/s1.jpg">
+  <img src="/assets/s2.jpg">
+  <img src="/assets/s3.jpg">
+</div>
+
+<!-- CAKE -->
+<div class="cake" onclick="breachCake()"></div>
+<p>Click the cake to breach the protocol.</p>
+<p>See the top terminal after click</p>
+
+<!-- MUSIC -->
+<iframe height="315"
+src="https://www.youtube.com/embed/x1tAVUAs4Kc"
+allow="autoplay; encrypted-media"
+allowfullscreen></iframe>
+
+<!-- WISHES DATABASE -->
+<div class="terminal">
+  <h3>> Wish Database Loaded</h3>
+  <p>> "Happy Birthday. You’re not just family. You’re home."</p>
+  <p>> "No firewall can block the love and respect I have for you."</p>
+  <p>> "Another year older, another level unlocked."</p>
+  <p>> "If this world glitches, I’ve got your back."</p>
+  <p>> "Breach complete: wishing you peace, power, and happiness."</p>
+</div>
+
+</div>
+</div>
+<footer class="site-footer">
+  Hope you like it 🤍
+</footer>
+<script>
+/* PASSWORD + PSYCHOLOGY */
+const PASSWORD = "my safe place";
+let attempts = 0;
+
+const responses = [
+  "Wrong. You know this.",
+  "Not numbers. Not dates.",
+  "Think emotionally.",
+  "Try what you mean to me.",
+  "Stop guessing. Start feeling.",
+  "Tell me if you can't find out",
+];
+
+function unlock() {
+  const input = document.getElementById("pass").value;
+  const msg = document.getElementById("msg");
+
+if (input === PASSWORD) {
+  sessionStorage.setItem("unlocked", "true"); // 👈 THIS IS THE KEY
+
+  document.getElementById("lock").style.display = "none";
+  document.getElementById("main").style.display = "block";
+  startTerminal();
+} else {
+  msg.textContent = responses[Math.min(attempts, responses.length - 1)];
+  document.getElementById("pass").value = "";
+  attempts++;
+}
+}
+
+/* TERMINAL TYPEWRITER */
+const lines = [
+  "> Initializing birthday sequence...",
+  "> Identity verified",
+  "> Sister detected: Age 24, Happiness level: MAX",
+  "> Emotional firewall disabled",
+  "> Accessing memories...",
+  "> Welcome home ❤️"
+];
+
+let l = 0, c = 0;
+const terminal = document.getElementById("terminal");
+
+function startTerminal() {
+  const typer = setInterval(() => {
+    if (l < lines.length) {
+      if (c < lines[l].length) {
+        terminal.innerHTML += lines[l][c++];
+      } else {
+        terminal.innerHTML += "<br>";
+        c = 0; l++;
+      }
+    } else clearInterval(typer);
+  }, 40);
+}
+
+/* CAKE */
+function breachCake() {
+  document.body.style.background = "#020";
+  terminal.innerHTML += "<br>> Cake breached. Happiness overflow.";
+  new Audio("https://assets.mixkit.co/sfx/preview/mixkit-achievement-bell-600.mp3").play();
+}
+
+/* CODE RAIN */
+const rain = document.querySelector(".code-rain");
+for (let i = 0; i < 450; i++) {
+  const d = document.createElement("div");
+  d.className = "code-piece";
+  d.textContent = Math.random() > 0.5 ? "1" : "0";
+  d.style.left = Math.random() * 100 + "%";
+  d.style.fontSize = 12 + Math.random() * 14 + "px";
+  d.style.animationDuration = 3 + Math.random() * 5 + "s";
+  d.style.opacity = Math.random();
+  rain.appendChild(d);
+}
+// AUTO-UNLOCK IF SESSION EXISTS
+if (sessionStorage.getItem("unlocked") === "true") {
+  document.getElementById("lock").style.display = "none";
+  document.getElementById("main").style.display = "block";
+  startTerminal();
+}
+</script>
+
+</body>
+</html>
